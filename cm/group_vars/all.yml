@@ -1,0 +1,6 @@
+app_name: sebastian
+
+locale: 'en_US.UTF-8'
+language: 'en_US:en'
+timezone: 'Europe/Moscow'
+ntp_server: 'pool.ntp.org'
