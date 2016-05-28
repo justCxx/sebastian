@@ -38,5 +38,9 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  config.web_console.whitelisted_ips = '192.168.0.0/16'
+
+  ENV.fetch('DEVELOPMENT_IP', '192.168.0.0/16').tap do |development_ip|
+    config.web_console.whitelisted_ips = development_ip
+    BetterErrors::Middleware.allow_ip! development_ip
+  end
 end
