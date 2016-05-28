@@ -11,9 +11,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20160519210610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "boards", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "boards", ["user_id"], name: "index_boards_on_user_id", using: :btree
+
+  create_table "cards", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "list_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "cards", ["list_id"], name: "index_cards_on_list_id", using: :btree
+
+  create_table "lists", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "board_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "lists", ["board_id"], name: "index_lists_on_board_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "name"
+    t.string   "nickname"
+    t.string   "userpic"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_foreign_key "boards", "users"
+  add_foreign_key "cards", "lists"
+  add_foreign_key "lists", "boards"
 end
