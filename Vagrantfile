@@ -12,7 +12,7 @@ Vagrant.configure(2) do |config|
   vm_ip = ENV.fetch 'SEBASTIAN_VM_IP', '192.168.50.20'
   config.vm.network 'private_network', ip: vm_ip
 
-  config.vm.synced_folder '.', '/vagrant', type: 'nfs'
+  config.vm.synced_folder '.', '/vagrant', type: 'nfs', mount_options: ['nolock,vers=3,udp']
 
   config.vm.provider 'virtualbox' do |vb|
     vb.memory = '2048'
