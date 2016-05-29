@@ -1,0 +1,5 @@
+= simple_form_for @form, url: sign_up_path do |f|
+  = f.input :email, placeholder: 'user@domain.com'
+  = f.input :password
+  = f.input :password_confirmation
+  = f.button :submit, 'Sign Up'
