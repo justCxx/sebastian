@@ -8,6 +8,7 @@ module Web
       run User::Create do
         return redirect_to user_boards_path @model
       end
+
       render :new
     end
 
