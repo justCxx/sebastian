@@ -2,7 +2,7 @@
 
 - hosts: all
   roles:
-    - bootstrap
+    - dev-server
     - nodejs
     - postgresql
     - ruby
